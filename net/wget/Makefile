@@ -32,7 +32,7 @@ define Package/wget/Default
   SUBMENU:=File Transfer
   TITLE:=Non-interactive network downloader
   URL:=https://www.gnu.org/software/wget/index.html
-  PROVIDES:=wget @wget-any
+  PROVIDES:=gnu-wget wget
 endef
 
 define Package/wget/Default/description
