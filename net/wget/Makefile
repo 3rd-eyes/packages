@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wget
-PKG_VERSION:=1.25.0
-PKG_RELEASE:=4
+PKG_VERSION:=1.24.5
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/$(PKG_NAME)
-PKG_HASH:=766e48423e79359ea31e41db9e5c289675947a7fcf2efdcedb726ac9d0da3784
+PKG_HASH:=fa2dc35bab5184ecbc46a9ef83def2aaaa3f4c9f3c97d4bd19dcb07d4da637de
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-3.0-or-later
@@ -50,8 +50,8 @@ $(call Package/wget/Default)
   TITLE+= (with SSL support)
   VARIANT:=ssl
   ALTERNATIVES:=\
-    400:/usr/bin/wget:/usr/libexec/wget-ssl \
-    400:/usr/bin/wget-ssl:/usr/libexec/wget-ssl
+    300:/usr/bin/wget:/usr/libexec/wget-ssl \
+    300:/usr/bin/wget-ssl:/usr/libexec/wget-ssl
 endef
 
 define Package/wget-ssl/description
@@ -76,7 +76,6 @@ endef
 CONFIGURE_ARGS+= \
 	--disable-rpath \
 	--disable-iri \
-	--disable-ntlm \
 	--with-included-libunistring \
 	--without-libuuid \
 	--without-libpsl
@@ -95,6 +94,7 @@ endif
 
 ifeq ($(BUILD_VARIANT),nossl)
 	CONFIGURE_ARGS+= \
+		--disable-ntlm \
 		--without-ssl
 endif
 
